@@ -1,15 +1,14 @@
-name: Keep Render API Active
+# This will make a request render backend to stop spins down the server on idle
+name: Request Render
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '*/20 * * * *'  # Runs every 20 minutes
+    - cron: "*/12 * * * *"
 
 jobs:
-  ping_api:
+  request-render:
     runs-on: ubuntu-latest
     steps:
-    - name: Send GET request to Render API
-      run: |
-        curl -X GET https://your-render-api-url.com/ping
-      env:
-        RENDER_API_URL: ${{ secrets.VITE_VERCEL_RENDER_API }}
+      - name: Request Render
+        run: curl -X GET ${{VITE_VERCEL_RENDER_API}}
