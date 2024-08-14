@@ -64,7 +64,7 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
 
     try {
       await addSchedule(scheduleData);
-      toast.success('Appointment booked successfully!', { id: toastId });
+      toast.success('Appointment booked successfully! Check your email', { id: toastId });
       setForm(initialFormState());
     } catch (error) {
       toast.error('Failed to book appointment. Please try again.', { id: toastId });
