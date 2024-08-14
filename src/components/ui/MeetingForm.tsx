@@ -46,7 +46,28 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addSchedule(form);
+    
+    // Format the date
+    const formattedDate = form.date.toISOString().split('T')[0]; // YYYY-MM-DD
+
+    // Format the time slot
+    const [time, period] = form.timeSlot.split(' ');
+    let [hours, minutes] = time.split(':');
+    if (period === 'PM' && hours !== '12') {
+      hours = String(parseInt(hours) + 12);
+    } else if (period === 'AM' && hours === '12') {
+      hours = '00';
+    }
+    const formattedTimeSlot = `${hours}:${minutes}:00`;
+
+    const scheduleData = {
+      ...form,
+      date: formattedDate,
+      timeSlot: formattedTimeSlot,
+      mentorId: mentor.id,
+    };
+
+    addSchedule(scheduleData);
   };
   return (
     <Dialog>

@@ -47,7 +47,7 @@ export const MentorProvider: React.FC<{children: React.ReactNode}> = ({ children
 
   const addSchedule = async (schedule: any) => {
     try{
-      const response = await axios.post(`${import.meta.env.VITE_VERCEL_RENDER_API}/schedule`, schedule);
+      const response = await axios.post(`${import.meta.env.VITE_VERCEL_RENDER_API}/schedules`, schedule);
       toast.success(response.data.message);
     }catch(error){
       if (axios.isAxiosError(error) && error.response) {
