@@ -1,14 +1,14 @@
-import { Card, CardContent, CardFooter, CardHeader } from "./card";
-import { Badge } from "./badge";
-import MeetingForm from "./MeetingForm";
+import { Card, CardContent, CardFooter, CardHeader } from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
+import MeetingForm from "../components/ui/MeetingForm";
 import { useMentorContext } from "@/contexts/Context";
 
 export default function Explore() {
-    const { mentors } = useMentorContext();
+    const { filteredMentors } = useMentorContext();
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-6 p-6">
-            {mentors.map((mentor) => (
-                <Card key={mentor.id} className="cursor-pointer hover:border-primary hover:shadow-md transition-all duration-300 ease-in-out">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-2 p-6">
+            {filteredMentors.map((mentor) => (
+                <Card key={mentor.id} className="cursor-pointer  hover:shadow-md transition-all duration-300 ease-in-out flex flex-col">
                     <CardHeader className="p-0">
                         <img
                             src="/mba.jpg"
@@ -34,7 +34,7 @@ export default function Explore() {
                             ))}
                         </div>
                     </CardContent>
-                    <CardFooter className="pt-0">
+                    <CardFooter className="pt-0 mt-auto">
                         <MeetingForm mentor={mentor}/>
                     </CardFooter>
                 </Card>

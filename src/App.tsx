@@ -1,7 +1,8 @@
 
 import HomeLayout from './pages/HomeLayout'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Explore from './components/ui/Explore'
+import Explore from './pages/Explore'
+import Activity from './pages/Activity'
 
 
 const router = createBrowserRouter([
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
         path:"/",
         element: <Explore />,
       },
+      {
+        path:"/activity",
+        element: <Activity/>,
+      }
     ],
   },
 ])

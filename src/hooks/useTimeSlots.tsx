@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export function useTimeSlots(initialDuration:number) {
-  const [duration, setDuration] = useState<number>(initialDuration);
+export function useTimeSlots(duration:number) {
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
 
   useEffect(() => {
@@ -25,5 +24,5 @@ export function useTimeSlots(initialDuration:number) {
     createTimeSlots(duration);
   }, [duration]);
 
-  return { timeSlots, setDuration };
+  return { timeSlots};
 }
