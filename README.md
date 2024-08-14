@@ -55,6 +55,19 @@ npm run build
 - `src/hooks`: Custom React hooks
 - `src/lib`: Utility functions and helpers
 
+## State Management
+
+This project uses React's Context API for state management. The main context is defined in `src/contexts/Context.tsx`.
+
+### MentorContext
+
+The `MentorContext` provides the following:
+
+- `mentors`: An array of all mentors.
+- `filteredMentors`: An array of mentors filtered based on the search query.
+- `addSchedule`: A function to add a new schedule.
+- `setSearchQuery`: A function to update the search query.
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
