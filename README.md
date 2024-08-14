@@ -1,4 +1,5 @@
 # CareerCarve
+![image](https://github.com/user-attachments/assets/a82cd1f8-68a0-4311-bbff-39038f38662c)
 
 CareerCarve is a mentorship platform that connects students with experienced professionals for career guidance and support.
 
