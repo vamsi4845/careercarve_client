@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect, useContext, useMemo} from 'react';
 import axios from 'axios';
-import {toast} from "sonner";
 
 export interface Mentor {
   id: string;
