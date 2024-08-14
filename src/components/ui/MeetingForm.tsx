@@ -30,9 +30,10 @@ interface MeetingFormProps {
 
 export default function MeetingForm({ mentor }: MeetingFormProps) {
   const [duration, setDuration] = useState<number>(30);
-  const {addSchedule} = useMentorContext();
-  const { timeSlots, } = useTimeSlots(duration);
-  const [form, setForm] = useState({
+  const { addSchedule } = useMentorContext();
+  const { timeSlots } = useTimeSlots(duration);
+
+  const initialFormState = () => ({
     date: new Date(),
     timeSlot: "",
     email: "",
@@ -40,7 +41,10 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
     name: "",
     duration: duration,
   });
-  const handleChange = (e: any) => {
+
+  const [form, setForm] = useState(initialFormState());
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
 
@@ -68,6 +72,7 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
     };
 
     addSchedule(scheduleData);
+    setForm(initialFormState());
   };
   return (
     <Dialog>
