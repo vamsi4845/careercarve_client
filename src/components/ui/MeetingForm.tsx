@@ -167,7 +167,7 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
               </div>
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter className="sm:justify-end">
+          <DialogFooter className="sm:justify-end mt-3">
             <DialogClose asChild>
               <Button
                 type="submit"
