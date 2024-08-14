@@ -15,7 +15,7 @@ export interface Mentor {
 interface MentorContextType {
   mentors: Mentor[];
   filteredMentors: Mentor[];
-  addSchedule: (schedule: any) => void;
+  addSchedule: (schedule: any) => Promise<any>;
   setSearchQuery: (query: string) => void;
 }
 
@@ -46,16 +46,15 @@ export const MentorProvider: React.FC<{children: React.ReactNode}> = ({ children
   }, [searchQuery, mentors]);
 
   const addSchedule = async (schedule: any) => {
-    try{
+    try {
       const response = await axios.post(`${import.meta.env.VITE_VERCEL_RENDER_API}/schedules`, schedule);
-      toast.success(response.data.message);
-    }catch(error){
+      return response.data;
+    } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        toast.error(`Failed to add task: ${error.response.data.message}`);
+        throw new Error(error.response.data.message || "Failed to book appointment");
       } else {
-        toast.error("An unexpected error occurred while Booking");
+        throw new Error("An unexpected error occurred while booking");
       }
-      console.error('Error adding task:', error);
     }
   };
 

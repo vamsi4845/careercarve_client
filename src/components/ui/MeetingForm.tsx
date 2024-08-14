@@ -1,28 +1,15 @@
-import { CalendarDays, Clock, MoveUpRight } from "lucide-react";
+
+
+import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "./button";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "./dialog";
 import { Calendar } from "./calendar";
-import React, { useState } from "react";
-import { useTimeSlots } from "@/hooks/useTimeSlots";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./select";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./dialog";
 import { Input } from "./input";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "./select";
+import { CalendarDays, Clock, MoveUpRight } from "lucide-react";
 import { useMentorContext } from "@/contexts/Context";
+import { useTimeSlots } from "@/hooks/useTimeSlots";
 
 interface MeetingFormProps {
   mentor: any;
@@ -32,6 +19,7 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
   const [duration, setDuration] = useState<number>(30);
   const { addSchedule } = useMentorContext();
   const { timeSlots } = useTimeSlots(duration);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const initialFormState = () => ({
     date: new Date(),
@@ -48,11 +36,14 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+    setIsSubmitting(true);
+
+    const toastId = toast.loading('Booking your appointment...');
+
     // Format the date
-    const formattedDate = form.date.toISOString().split('T')[0]; // YYYY-MM-DD
+    const formattedDate = form.date.toISOString().split('T')[0];
 
     // Format the time slot
     const [time, period] = form.timeSlot.split(' ');
@@ -71,9 +62,17 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
       mentorId: mentor.id,
     };
 
-    addSchedule(scheduleData);
-    setForm(initialFormState());
+    try {
+      await addSchedule(scheduleData);
+      toast.success('Appointment booked successfully!', { id: toastId });
+      setForm(initialFormState());
+    } catch (error) {
+      toast.error('Failed to book appointment. Please try again.', { id: toastId });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -114,7 +113,6 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
                         onValueChange={(value) => setDuration(Number(value))}
                       >
                         <SelectTrigger className="w-1/3 h-8">
-
                           <SelectValue placeholder="30" />
                         </SelectTrigger>
                         <SelectContent>
@@ -173,8 +171,9 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
             <DialogClose asChild>
               <Button
                 type="submit"
+                disabled={isSubmitting}
               >
-                Book
+                {isSubmitting ? 'Booking...' : 'Book'}
               </Button>
             </DialogClose>
           </DialogFooter>
