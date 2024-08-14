@@ -125,7 +125,7 @@ export default function MeetingForm({ mentor }: MeetingFormProps) {
                       </Select>
                     </div>
                     <div
-                      className="grid grid-cols-1 gap-2 border 
+                      className="grid grid-cols-2 md:grid-cols-1 gap-2 border 
                     rounded-lg p-4"
                     >
                       {timeSlots?.map((item) => (
