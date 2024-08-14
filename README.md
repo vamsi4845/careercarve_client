@@ -1,50 +1,64 @@
-# React + TypeScript + Vite
+# CareerCarve
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CareerCarve is a mentorship platform that connects students with experienced professionals for career guidance and support.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User authentication with Clerk
+- Browse and search for mentors
+- Schedule mentorship sessions
+- View upcoming and past sessions
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone the repository
+2. Navigate to the client directory:
+   ```
+   cd client
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
+4. Create a `.env` file in the client directory and add the following:
+   ```
+   VITE_VERCEL_RENDER_API=<your_backend_api_url>
+   VITE_VERCEL_CLERK_PUBLISHABLE_KEY=<your_clerk_publishable_key>
+   ```
+5. Start the development server:
+   ```
+   npm run dev
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+## Build
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+To build the project for production:
+
+```
+npm run build
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Technologies Used
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Clerk for authentication
+- Axios for API requests
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Project Structure
+
+- `src/components`: Reusable UI components
+- `src/pages`: Main application pages
+- `src/contexts`: React context for state management
+- `src/hooks`: Custom React hooks
+- `src/lib`: Utility functions and helpers
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
