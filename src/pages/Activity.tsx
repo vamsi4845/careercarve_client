@@ -4,7 +4,7 @@ import { useMentorContext } from '../contexts/Context';
 import { Schedule } from '../types/index';
 
 export default function Activity() {
-  const { fetchUserSchedules, schedules } = useMentorContext();
+  const { fetchUserSchedules, schedules, user } = useMentorContext();
   
   useEffect(() => {
     fetchUserSchedules();
@@ -36,7 +36,13 @@ export default function Activity() {
 
   return (
     <div className='px-4 sm:px-10 mt-10 max-w-6xl mx-auto'>
-      <h2 className='font-bold text-2xl text-center mb-6'>Appointment History</h2>
+      <h2 className='font-bold text-2xl text-center mb-2'>Appointment History</h2>
+      <p className='text-center text-gray-600 mb-6'>
+        Showing appointments for{' '}
+        <span className='text-primary font-semibold'>
+          {user?.primaryEmailAddress?.emailAddress || 'Unknown User'}
+        </span>
+      </p>
       <Tabs defaultValue="upcoming" className="w-full">
         <TabsList className="w-full mb-6">
           <TabsTrigger value="upcoming" className="flex-1">Upcoming Appointments</TabsTrigger>
