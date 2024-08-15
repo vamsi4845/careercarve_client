@@ -1,16 +1,16 @@
-name: Keep Render API Active
+name: Keep CareerCarve Server Active
 
 on:
   schedule:
-    - cron: '*/20 * * * *'  # Runs every 20 minutes
+    - cron: '*/10 * * * *'  # Runs every 10 minutes
 
 jobs:
   ping_api:
     runs-on: ubuntu-latest
     steps:
-    - name: Send GET request to Render API ping endpoint
+    - name: Send GET request to CareerCarve Server
       run: |
-        response=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.RENDER_API_URL }}/ping)
+        response=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.VITE_VERCEL_RENDER_API }}/ping)
         if [ $response -eq 200 ]; then
           echo "Ping successful"
         else
@@ -18,4 +18,4 @@ jobs:
           exit 1
         fi
       env:
-        RENDER_API_URL: ${{ secrets.VITE_VERCEL_RENDER_API }}
+        VITE_VERCEL_RENDER_API: ${{ secrets.VITE_VERCEL_RENDER_API }}
