@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom'
-import { ClerkProvider, useAuth } from "@clerk/clerk-react"
+import { ClerkProvider, useAuth, useUser } from "@clerk/clerk-react"
+import { MentorProvider } from './contexts/Context'
 import HomeLayout from './pages/HomeLayout'
 import Explore from './pages/Explore'
 import Activity from './pages/Activity'
@@ -55,7 +56,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <ClerkProvider publishableKey={import.meta.env.VITE_VERCEL_CLERK_PUBLISHABLE_KEY}>
-      <RouterProvider router={router} />
+      <MentorProvider>
+        <RouterProvider router={router} />
+      </MentorProvider>
     </ClerkProvider>
   )
 }

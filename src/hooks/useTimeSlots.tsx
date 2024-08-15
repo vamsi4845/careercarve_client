@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-export function useTimeSlots(duration:number) {
+export function useTimeSlots(duration: number) {
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
 
   useEffect(() => {
     const createTimeSlots = (interval: number) => {
-      const startTime = 19 * 60; // 8 AM in minutes
+      const startTime = 19 * 60; // 7 PM in minutes
       const endTime = 22 * 60; // 10 PM in minutes
       const totalSlots = Math.floor((endTime - startTime) / interval);
 
@@ -24,5 +24,5 @@ export function useTimeSlots(duration:number) {
     createTimeSlots(duration);
   }, [duration]);
 
-  return { timeSlots};
+  return { timeSlots };
 }
