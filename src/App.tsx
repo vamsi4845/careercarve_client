@@ -4,12 +4,15 @@ import HomeLayout from './pages/HomeLayout'
 import Explore from './pages/Explore'
 import Activity from './pages/Activity'
 import Auth from './pages/Auth'
+import {Loader2 } from 'lucide-react'
 
 const ProtectedRoute = () => {
   const { isLoaded, isSignedIn } = useAuth();
 
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div className='flex items-center justify-center h-screen'>
+      <Loader2 size={60} className='animate-spin text-primary' />
+    </div>;
   }
 
   if (!isSignedIn) {
