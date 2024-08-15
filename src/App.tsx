@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom'
-import { ClerkProvider, useAuth, useUser } from "@clerk/clerk-react"
+import { ClerkProvider, useAuth } from "@clerk/clerk-react"
 import { MentorProvider } from './contexts/Context'
 import HomeLayout from './pages/HomeLayout'
 import Explore from './pages/Explore'
