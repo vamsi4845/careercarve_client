@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Send GET request to Render API ping endpoint
       run: |
-        response=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.RENDER_API_URL }}/ping)
+        response=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.VITE_VERCEL_RENDER_API }}/ping)
         if [ $response -eq 200 ]; then
           echo "Ping successful"
         else
