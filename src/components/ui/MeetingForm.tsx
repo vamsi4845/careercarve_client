@@ -97,12 +97,12 @@ export default function MeetingForm({ mentor }: { mentor: Mentor }) {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[400px] md:max-w-2xl">
+        <DialogTitle className="text-lg sm:text-xl">
+          Book Appointment with{" "}
+          <span className="text-primary font-bold">{mentor.name}</span>
+        </DialogTitle>
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle className="text-lg sm:text-xl">
-              Book Appointment with{" "}
-              <span className="text-primary font-bold">{mentor.name}</span>
-            </DialogTitle>
             <DialogDescription>
               <div className="flex flex-col gap-4 mt-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
