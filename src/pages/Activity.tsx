@@ -35,7 +35,7 @@ export default function Activity() {
   );
 
   return (
-    <div className='px-4 sm:px-10 mt-10 max-w-6xl mx-auto'>
+    <div className='px-4 sm:px-10 m-10 max-w-6xl mx-auto'>
       <h2 className='font-bold text-2xl text-center mb-2'>Appointment History</h2>
       <p className='text-center text-gray-600 mb-6'>
         Showing appointments for{' '}
