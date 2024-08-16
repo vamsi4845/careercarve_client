@@ -96,7 +96,7 @@ export default function MeetingForm({ mentor }: { mentor: Mentor }) {
           Book Now <MoveUpRight className="w-4 h-4 ml-2" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] md:max-w-2xl">
+      <DialogContent className="sm:max-w-[400px] md:max-w-2xl">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle className="text-lg sm:text-xl">
@@ -116,7 +116,7 @@ export default function MeetingForm({ mentor }: { mentor: Mentor }) {
                       selected={form.date}
                       onSelect={(date) => setForm({ ...form, date: date || new Date() })}
                       disabled={(date) => date < new Date() || date > new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
-                      className="rounded-md border p-2"
+                      className="rounded-md border p-2 flex items-center justify-center"
                     />
                   </div>
                   <div className="flex flex-col gap-0">
@@ -150,7 +150,7 @@ export default function MeetingForm({ mentor }: { mentor: Mentor }) {
                         </Tooltip>
                       </TooltipProvider>
                     </div>
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-1 gap-2 border rounded-lg p-[15px]  overflow-y-auto">
+                    <div className="grid grid-cols-3  md:grid-cols-1 gap-2 border rounded-lg md:p-[15px] p-[9px]  overflow-y-auto">
                       {timeSlots?.length > 0 ? (
                         timeSlots.map((item) => (
                           <div
